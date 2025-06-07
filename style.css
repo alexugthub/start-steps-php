@@ -1,0 +1,183 @@
+/* Basic styling for the notes app - Dark Theme */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: #1e1e1e; /* Slightly lighter dark for container */
+    padding: 25px 30px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5); /* Darker shadow */
+    border-radius: 8px;
+    border: 1px solid #333; /* Subtle border */
+}
+
+h1 {
+    color: #bb86fc; /* Vibrant accent for main heading */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+h2 {
+    color: #cfcfcf; /* Lighter heading color */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #333; /* Darker border */
+    padding-bottom: 10px;
+    font-size: 1.8em;
+}
+
+/* Form Styling */
+.note-form {
+    background-color: #2c2c2c; /* Darker form background */
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    border: 1px solid #444;
+}
+
+.note-form div {
+    margin-bottom: 15px;
+}
+
+.note-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #b0b0b0; /* Lighter label color */
+}
+
+.note-form input[type="text"],
+.note-form textarea {
+    width: calc(100% - 22px); /* Account for padding and border */
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background-color: #333; /* Dark input background */
+    color: #e0e0e0; /* Light input text */
+}
+
+.note-form input[type="text"]::placeholder,
+.note-form textarea::placeholder {
+    color: #888; /* Placeholder text color */
+}
+
+.note-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.note-form button[type="submit"],
+.note-actions button,
+.note-actions .edit-button,
+.cancel-button {
+    background-color: #bb86fc; /* Primary accent color for buttons */
+    color: #121212; /* Dark text on buttons for contrast */
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.note-form button[type="submit"]:hover,
+.note-actions button:hover,
+.note-actions .edit-button:hover,
+.cancel-button:hover {
+    background-color: #3700b3; /* Darker shade of accent on hover */
+    color: #e0e0e0;
+}
+
+.note-actions button[type="submit"] { /* Specifically for delete button */
+    background-color: #cf6679; /* Error/delete color for dark theme */
+    color: #121212;
+}
+.note-actions button[type="submit"]:hover {
+    background-color: #b00020; /* Darker delete on hover */
+    color: #e0e0e0;
+}
+
+.cancel-button {
+    background-color: #484848;
+    color: #e0e0e0;
+}
+.cancel-button:hover {
+    background-color: #333;
+}
+
+
+/* Notes List Styling */
+.notes-list {
+    margin-top: 20px;
+}
+
+.note-item {
+    background-color: #252525; /* Dark background for note items */
+    border: 1px solid #383838;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.note-item h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #bb86fc; /* Accent color for note titles */
+    font-size: 1.5em;
+}
+
+.note-content {
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #c0c0c0; /* Slightly dimmer text for content */
+}
+
+.note-meta {
+    font-size: 0.85em;
+    color: #888; /* Dimmer color for meta data */
+    margin-bottom: 10px;
+}
+
+.note-actions {
+    margin-top: 10px;
+    text-align: right;
+}
+
+hr.note-divider {
+    display: none;
+}
+
+/* Error and Success Messages */
+.error-message {
+    color: #121212; /* Dark text for contrast */
+    background-color: #cf6679; /* Error background */
+    border: 1px solid #b00020;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.success-message { /* We'll use this later */
+    color: #121212; /* Dark text for contrast */
+    background-color: #03dac6; /* Success background (teal accent) */
+    border: 1px solid #018786;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}

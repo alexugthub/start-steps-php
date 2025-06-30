@@ -1,0 +1,3 @@
+// Ignore configuration files, logs and temporary files
+
+*.env

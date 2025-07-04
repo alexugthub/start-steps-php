@@ -1,3 +1,6 @@
 // Ignore configuration files, logs and temporary files
 
 *.env
+
+// Ignore files generated in debug mode
+*.debug.php

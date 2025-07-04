@@ -202,8 +202,8 @@ function install()
             $code
         );
 
-        // To test in debug mode, save somewhere else
-        $path = DEBUG ? "test.php" : "index.php";
+        // To test in debug mode, save as different file
+        $path = DEBUG ? "index.debug.php" : "index.php";
 
         // Save code with new configuration
         file_put_contents($path, $code);

@@ -20,3 +20,7 @@ any web server that supports PHP, such as Apache or Nginx. The whole application
 is packaged as a single file, for easy deployment. Just download the `index.php`
 file and place it in your web server's document root (*public_html*). You access
 the application by navigating to `http://your-server/steps.php` in your browser.
+
+## Usage Examples
+
+https://github.com/user-attachments/assets/58767b89-3de0-4be8-aa42-b20fb65599dc

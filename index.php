@@ -369,7 +369,11 @@ switch ($type) :
         min-height: 2em;
         padding: .5em;
         text-align: justify;
-        white-space: pre;
+        white-space: pre-wrap;
+      }
+
+      *[contenteditable="false"] {
+        white-space: pre-wrap;
       }
 
       a,
@@ -587,9 +591,9 @@ switch ($type) :
           `"([^"\\\\]*(?:\\\\.[^"\\\\]*)*)"`, 'g'
         );
 
-        // Regular expression for special characters
+        // Regular expression for special characters (excluding whitespace and newlines)
         const specialRegex = new RegExp(
-          `([^a-zA-z0-9\s<>!?@#$%^&*()-_=+.,;:\/"' \n]+)`,
+          `([^a-zA-z0-9 \t<>!?@#$%^&*()-_=+.,;:\/"'\r\n]+)`,
           'g'
         );
 
@@ -602,8 +606,10 @@ switch ($type) :
           'g'
         );
 
-        // Escape special characters
-        text = text.replace("<", "&lt;").replace(">", "&gt;");
+        // Escape special characters first
+        text = text.replace(/&/g, "&amp;")
+                   .replace(/</g, "&lt;")
+                   .replace(/>/g, "&gt;");
 
         // Change color of code parts
         text = text.replace(
@@ -648,7 +654,7 @@ switch ($type) :
         );
 
         // Replace plain links with anchors
-        dom.innerHTML = text.replace(
+        text = text.replace(
           linkRegex,
           m => {
             // If the match starts with ://, prepend https
@@ -656,6 +662,9 @@ switch ($type) :
             return `<a href="${href}" target="_blank">${m}</a>`;
           }
         );
+
+        // Set innerHTML directly - the CSS white-space: pre-wrap will handle newlines
+        dom.innerHTML = text;
       };
 
       //========================================================================

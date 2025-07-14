@@ -7,7 +7,7 @@
  */
 
 //==============================================================================
-// CONFIGURATION
+// MARK: CONFIG
 //==============================================================================
 
 // Application version
@@ -23,7 +23,7 @@ define("APP_FOLDER", ".." . DIRECTORY_SEPARATOR);
 define("SQLITE_FILE", "steps.db");
 
 //==============================================================================
-// REQUEST
+// MARK: REQUEST
 //==============================================================================
 
 // Request method (GET, POST, PUT, DELETE)
@@ -45,17 +45,7 @@ $title          = "Steps";
 $description    = "A simple note taking application (for now)";
 
 //==============================================================================
-// RESPONSE
-//==============================================================================
-
-// Data for the JSON response
-$response     = [
-  // Whether request is considered successful or not
-  "success"   => false
-];
-
-//==============================================================================
-// FUNCTIONS
+// MARK: HELPERS
 //==============================================================================
 
 /**
@@ -216,16 +206,33 @@ function install()
 // Install (invocation is commented out once installed)
 install();
 
+//==============================================================================
+// MARK: RESPONSE
+//==============================================================================
+
+// Data for the JSON response
+$response     = [
+  // Whether request is considered successful or not
+  "success"   => false
+];
+
 // Handle request and generate response based on content type
 switch ($type) :
     //==========================================================================
-    // JSON
+    // MARK: JSON
     //==========================================================================
 
     // Client side requests of the APIs operations
     case "application/json":
         // Handle each method and requested operation
         switch ("$method:$operation") {
+            // Get application status
+            case "get:status":
+                // Return application version and status
+                $response["version"] = VERSION;
+                $response["installed"] = is_file(APP_FOLDER . ".env");
+                $response["success"] = true;
+                break;
             // Get a note by its ID
             case "get:note":
                 // Validate request data
@@ -302,7 +309,7 @@ switch ($type) :
         break;
 
     //==========================================================================
-    // DEFAULT
+    // MARK: START
     //==========================================================================
 
     default:
@@ -316,8 +323,8 @@ switch ($type) :
     <meta name="description"
           content="<?= $description ?>" />
     <title><?= $title ?></title>
+    <!-- Global styles -->
     <style>
-      /* Global rules */
       :root {
         --background-color: rgba(32, 32, 32, 1);
         --surface-color:    rgba(242, 242, 242, 1);
@@ -823,6 +830,11 @@ switch ($type) :
               selection.addRange(range);
             }
           );
+        });
+
+        // Check if application is installed
+        get("status", {}, "json", (status) => {
+          console.log("Application status:", status);
         });
       });
     </script>

@@ -1,6 +1,8 @@
 # Steps User Guide
 
-Welcome to Steps - your personal project management and note-taking companion.
+Welcome to Steps - a personal and professional management system that can evolve
+from a simple notes taking PHP application to a comprehensive solution for 
+managing initiatives, projects and other endeavours
 
 ## Table of Contents
 

@@ -6,12 +6,14 @@
  * @link https://alexu.click/projects/steps
  */
 
+namespace Steps;
+
 //==============================================================================
 // MARK: CONFIG
 //==============================================================================
 
 // Application version
-define("VERSION", "0.0.1");
+define("VERSION", "0.1.0");
 
 // Debug mode for local testing
 define("DEBUG", true);
@@ -45,6 +47,28 @@ $title          = "Steps";
 $description    = "A simple note taking application (for now)";
 
 //==============================================================================
+// MARK: CLASSES
+//==============================================================================
+
+/**
+ * Configuration class for the global environment settings
+ */
+class Config
+{
+    // Application version
+    public const VERSION = "0.1.0";
+
+    // Debug mode for local testing
+    public const DEBUG = true;
+
+    // Application protected location (upper directory)
+    public const APP_FOLDER = ".." . DIRECTORY_SEPARATOR;
+
+    // SQLite database connection information
+    public const SQLITE_FILE = "steps.db";
+}
+
+//==============================================================================
 // MARK: HELPERS
 //==============================================================================
 
@@ -66,14 +90,14 @@ function database($config = [])
     // Give it a try
     try {
         // Create a new connection
-        $dbh = new PDO("sqlite:$file");
+        $dbh = new \PDO("sqlite:$file");
 
         // Enable foreign keys
         $dbh->exec("PRAGMA foreign_keys = ON;");
 
         // Return PDO
         return $dbh;
-    } catch (PDOException $e) {
+    } catch (\PDOException $e) {
         var_dump($e->getMessage());
         // Return nothing
         return null;
@@ -253,7 +277,7 @@ switch ($type) :
                     $stmt->execute();
 
                     // Get the note's content for the response
-                    $note = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $note = $stmt->fetch(\PDO::FETCH_ASSOC);
                     if ($note) {
                         $response["content"] = $note["content"];
                         $response["success"] = true;
@@ -670,7 +694,7 @@ switch ($type) :
           }
         );
 
-        // Set innerHTML directly - the CSS white-space: pre-wrap will handle newlines
+        // Set innerHTML directly
         dom.innerHTML = text;
       };
 
